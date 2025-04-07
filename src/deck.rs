@@ -20,6 +20,7 @@ pub fn fifty_two_playing_card_deck(cards: &mut VecDeque<Box<dyn Card>>) {
 }
 
 pub trait Deck: fmt::Display {
+    // TODO: Add function deck size.
     fn shuffle(&mut self);
     fn deal(&mut self) -> Option<Box<dyn Card>>;
     fn reset(&mut self);

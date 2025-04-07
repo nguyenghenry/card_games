@@ -1,8 +1,9 @@
 use std::fmt;
 use strum_macros::EnumIter;
+use strum_macros::Display;
 
 // Looks like I need Clone and Copy because Suit is in the outer loop when I try to make the deck?
-#[derive(Clone, Copy, EnumIter)]
+#[derive(Clone, Copy, EnumIter, Display)]
 pub enum Suit {
     Diamonds,
     Hearts,
@@ -10,19 +11,7 @@ pub enum Suit {
     Clubs,
 }
 
-impl fmt::Display for Suit {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let suit = match self {
-            Suit::Hearts => "Hearts",
-            Suit::Diamonds => "Diamonds",
-            Suit::Clubs => "Clubs",
-            Suit::Spades => "Spades",
-        };
-        write!(f, "{}", suit)
-    }
-}
-
-#[derive(EnumIter)]
+#[derive(Clone, Copy, EnumIter, Display)]
 pub enum Rank {
     Ace,
     Two,
@@ -39,44 +28,13 @@ pub enum Rank {
     King,
 }
 
-impl fmt::Display for Rank {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let rank = match self {
-            Rank::Ace => "Ace",
-            Rank::Two => "Two",
-            Rank::Three => "Three",
-            Rank::Four => "Four",
-            Rank::Five => "Five",
-            Rank::Six => "Six",
-            Rank::Seven => "Seven",
-            Rank::Eight => "Eight",
-            Rank::Nine => "Nine",
-            Rank::Ten => "Ten",
-            Rank::Jack => "Jack",
-            Rank::Queen => "Queen",
-            Rank::King => "King",
-        };
-        write!(f, "{}", rank)
-    }
-}
-
-#[derive(EnumIter)]
+#[derive(Clone, Copy, EnumIter, Display)]
 pub enum Exposure {
     FaceUp,
     FaceDown,
 }
 
-impl fmt::Display for Exposure {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let exposure = match self {
-            Exposure::FaceDown => "Face-Down",
-            Exposure::FaceUp => "Face-Up",
-        };
-        write!(f, "{}", exposure)
-    }
-}
-
-#[derive(EnumIter)]
+#[derive(Clone, Copy, EnumIter, Display)]
 pub enum Color {
     Blue,
     Green,
@@ -84,34 +42,11 @@ pub enum Color {
     Yellow,
 }
 
-impl fmt::Display for Color {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let color = match self {
-            Color::Blue => "Blue",
-            Color::Red => "Red",
-            Color::Green => "Green",
-            Color::Yellow => "Yellow",
-        };
-        write!(f, "{}", color)
-    }
-}
-
-#[derive(EnumIter)]
+#[derive(Clone, Copy, EnumIter, Display)]
 pub enum Action {
     Skip,
     Reverse,
     DrawTwo,
-}
-
-impl fmt::Display for Action {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        let action = match self {
-            Action::Skip => "Skip",
-            Action::Reverse => "Reverse",
-            Action::DrawTwo => "DrawTwo"
-        };
-        write!(f, "{}", action)
-    }
 }
 
 pub trait Card: fmt::Display {
